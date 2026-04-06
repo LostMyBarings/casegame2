@@ -16,9 +16,9 @@ public class CrateManager : MonoBehaviour
     [Header("Settings")]
     public GameObject itemPrefab;
     public RectTransform content;
-    public int itemsToSpawn = 100;
+    public int itemsToSpawn = 50;
     public float itemWidth = 32f;
-    public float smoothness = 5f;
+    public float smoothness = 2f;
 
     [Header("Possibilities")]
     public List<ItemData> possibleSkins;
@@ -27,6 +27,9 @@ public class CrateManager : MonoBehaviour
     private float currentVelocity = 0f;
     private bool isSpinning = false;
 
+    private ItemData winningItem;
+    private int winnerIndex;
+
     public void StartSpinning()
     {
         foreach (Transform child in content)
@@ -34,41 +37,54 @@ public class CrateManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        content.anchoredPosition = new Vector2(-100, 0);
+        content.anchoredPosition = new Vector2(0, 0);
+        winnerIndex = itemsToSpawn - 20;
+
+        winningItem = possibleSkins[Random.Range(0, possibleSkins.Count)];
 
         for (int i = 0; i < itemsToSpawn; i++)
         {
-            ItemData randomSkin = possibleSkins[Random.Range(0, possibleSkins.Count)];
-            GameObject newItem = Instantiate(itemPrefab, content);
-        }
+            ItemData skinToAssign;
 
-        int winnerIndex = itemsToSpawn - 20;
-        float randomOffset = Random.Range(-itemWidth * 0.45f, itemWidth * 0.45f);
-        targetX = -(winnerIndex * itemWidth) + randomOffset;
+            if (i == winnerIndex)
+            {
+                skinToAssign = winningItem;
+            }
+            else
+            {
+                skinToAssign = possibleSkins[Random.Range(0, possibleSkins.Count)];
+            }
+
+            GameObject newItem = Instantiate(itemPrefab, content);
+            CaseItem itemScript = newItem.GetComponent<CaseItem>();
+            if (itemScript != null)
+            {
+                itemScript.Setup(skinToAssign.skinName, skinToAssign.skinSprite);
+
+            }
+
+        }
+        float randomOffset = Random.Range(-itemWidth * 0.4f, itemWidth * 0.4f);
+        targetX = -(winnerIndex * itemWidth) + randomOffset + 160f;
         isSpinning = true;
     }
 
-    void Start()
-    {
-        
-    }
     void Update()
     {
         if (isSpinning)
         {
-            Debug.Log("Spinning Started");
             float newX = Mathf.SmoothDamp(content.anchoredPosition.x, targetX, ref currentVelocity, smoothness);
             content.anchoredPosition = new Vector2(newX, 0);
 
-            if (Mathf.Abs(newX - targetX) <= 0.4f)
+            if (Mathf.Abs(newX - targetX) <= 0.5f)
             {
                 content.anchoredPosition = new Vector2(targetX, 0);
                 isSpinning = false;
+                Debug.Log("You unboxed: " + winningItem.skinName);
+                Transform winningTransform = content.GetChild(winnerIndex);
+                Destroy(winningTransform.gameObject);
+                Debug.Log("CODE WINNER INDEX: " + winnerIndex);
             }
-        }
-        if (!isSpinning)
-        {
-            Debug.Log("Spinning ended");
         }
     }
 }

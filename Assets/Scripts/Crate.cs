@@ -57,13 +57,11 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     public void OnPointerEnter(PointerEventData eventData)
     {
         isHovering = true;
-        Debug.Log("Hovering");
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         isHovering = false;
-        Debug.Log("Not Hovering");
     }
 
     public void OnPointerClick(PointerEventData eventData)

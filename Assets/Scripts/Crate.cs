@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class Crate : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler , IPointerClickHandler
+public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [SerializeField] CrateManager CrateManager;
+    [SerializeField] GameObject CaseOpening;
+
     private float timeLeft = 5;
     private bool clicked = false;
     private bool isHovering = false;
@@ -22,6 +25,7 @@ public class Crate : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler 
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
+            CaseOpening.SetActive(true);
 
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
@@ -66,5 +70,6 @@ public class Crate : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler 
     public void OnPointerClick(PointerEventData eventData)
     {
         clicked = true;
+        CrateManager.StartSpinning();
     }
 }

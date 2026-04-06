@@ -19,7 +19,6 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
     void Update()
     {
         PopIcon();
-        Debug.Log("timeLeft = " + timeLeft);
 
         if (clicked)
         {

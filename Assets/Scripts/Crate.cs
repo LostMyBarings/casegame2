@@ -4,7 +4,6 @@ public class Crate : MonoBehaviour , IPointerEnterHandler , IPointerExitHandler 
 {
     private float timeLeft = 5;
     private bool clicked = false;
-
     private bool isHovering = false;
     private float velocity;
     private float smoothTime = 0.2f;

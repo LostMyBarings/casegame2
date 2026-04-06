@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c68d0537a4f515a4fa715fe20cc55b33
+guid: 38ef009736bded04e883202e3fd9abbd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4842304914776888405
-    second: caseopener_0
+      213: -4635882261149003607
+    second: Crate-1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: caseopener_0
+      name: Crate-1_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 4
         y: 0
-        width: 320
-        height: 180
+        width: 40
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bab689ce55dacccb0800000000000000
-      internalID: -4842304914776888405
+      spriteID: 9a0ddab35a90aafb0800000000000000
+      internalID: -4635882261149003607
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      caseopener_0: -4842304914776888405
+      Crate-1_0: -4635882261149003607
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

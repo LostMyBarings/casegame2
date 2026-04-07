@@ -37,8 +37,8 @@ public class CrateManager : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        content.anchoredPosition = new Vector2(0, 0);
-        winnerIndex = itemsToSpawn - 20;
+        content.anchoredPosition = new Vector2(-100, 0);
+        winnerIndex = itemsToSpawn - 10;
 
         winningItem = possibleSkins[Random.Range(0, possibleSkins.Count)];
 
@@ -64,7 +64,7 @@ public class CrateManager : MonoBehaviour
             }
 
         }
-        float randomOffset = Random.Range(-itemWidth * 0.4f, itemWidth * 0.4f);
+        float randomOffset = Random.Range(-itemWidth * 0.5f, itemWidth * 0.1f);
         targetX = -(winnerIndex * itemWidth) + randomOffset + 160f;
         isSpinning = true;
     }
@@ -82,7 +82,7 @@ public class CrateManager : MonoBehaviour
                 isSpinning = false;
                 Debug.Log("You unboxed: " + winningItem.skinName);
                 Transform winningTransform = content.GetChild(winnerIndex);
-                Destroy(winningTransform.gameObject);
+                winningTransform.name = "WINNER";
                 Debug.Log("CODE WINNER INDEX: " + winnerIndex);
             }
         }

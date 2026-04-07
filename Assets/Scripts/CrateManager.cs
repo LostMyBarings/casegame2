@@ -2,19 +2,25 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 
 [System.Serializable]
 public class ItemData
 {
     public string skinName;
     public Sprite skinSprite;
+    public double skinReward;
     public Color rarityColor;
 }
 
 public class CrateManager : MonoBehaviour
 {
     [Header("Settings")]
+    public GameManager GameManager;
+    public TextMeshProUGUI moneyTMP;
     public GameObject itemPrefab;
+    public Crate crate;
     public RectTransform content;
     public int itemsToSpawn = 50;
     public float itemWidth = 32f;
@@ -59,7 +65,7 @@ public class CrateManager : MonoBehaviour
             CaseItem itemScript = newItem.GetComponent<CaseItem>();
             if (itemScript != null)
             {
-                itemScript.Setup(skinToAssign.skinName, skinToAssign.skinSprite);
+                itemScript.Setup(skinToAssign.skinName, skinToAssign.skinSprite, skinToAssign.skinReward);
 
             }
 
@@ -67,6 +73,15 @@ public class CrateManager : MonoBehaviour
         float randomOffset = Random.Range(-itemWidth * 0.5f, itemWidth * 0.1f);
         targetX = -(winnerIndex * itemWidth) + randomOffset + 160f;
         isSpinning = true;
+    }
+
+    public void CrateReward()
+    {
+        moneyTMP.text = (GameManager.money += winningItem.skinReward).ToString();
+    }
+
+    private void Start()
+    {
     }
 
     void Update()
@@ -84,6 +99,7 @@ public class CrateManager : MonoBehaviour
                 Transform winningTransform = content.GetChild(winnerIndex);
                 winningTransform.name = "WINNER";
                 Debug.Log("CODE WINNER INDEX: " + winnerIndex);
+                CrateReward();
             }
         }
     }

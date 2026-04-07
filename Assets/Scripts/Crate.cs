@@ -4,12 +4,19 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 {
     [SerializeField] CrateManager CrateManager;
     [SerializeField] GameObject CaseOpening;
+    [SerializeField] Canvas Canvas;
+    public GameObject newOpening;
+    public RectTransform newOpeningContent;
+
+    private int openingsStarted;
 
     private float timeLeft = 5;
     private bool clicked = false;
     private bool isHovering = false;
     private float velocity;
     private float smoothTime = 0.2f;
+    private Vector3 spawnPosition = new Vector3(0, 0, 0);
+    private Quaternion spawnRotation = new Quaternion(0, 0, 0, 0);
 
     void Start()
     {
@@ -24,7 +31,6 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
         {
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
-            CaseOpening.SetActive(true);
 
             timeLeft -= Time.deltaTime;
             if (timeLeft <= 0)
@@ -66,7 +72,18 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        clicked = true;
-        CrateManager.StartSpinning();
+        if (openingsStarted == 1) { Destroy(newOpening); openingsStarted = 0; }
+        if (!clicked)
+        {
+            clicked = true;
+            newOpening = Instantiate(CaseOpening, spawnPosition, spawnRotation, Canvas.transform);
+            newOpeningContent = newOpening.transform.Find("ScrollerWindow/ScrollerContent") as RectTransform;
+            CrateManager.content = newOpeningContent;
+            CrateManager.StartSpinning();
+            openingsStarted = 1;
+
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }

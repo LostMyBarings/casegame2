@@ -151,7 +151,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2210799749112281024, guid: 5d7632277be211c49a245eb25b0865f4, type: 3}
   content: {fileID: 406511500}
   itemsToSpawn: 50
-  itemWidth: 40
+  itemWidth: 32
   smoothness: 2
   possibleSkins:
   - skinName: Glock19 (Common)
@@ -247,7 +247,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: -46
+  m_Spacing: -31
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1

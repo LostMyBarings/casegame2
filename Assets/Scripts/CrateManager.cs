@@ -17,10 +17,9 @@ public class ItemData
 public class CrateManager : MonoBehaviour
 {
     [Header("Settings")]
-    public GameManager GameManager;
-    public TextMeshProUGUI moneyTMP;
+    public GameObject GameManagerObj;
+    public TMP_Text moneyTMPText;
     public GameObject itemPrefab;
-    public Crate crate;
     public RectTransform content;
     public int itemsToSpawn = 50;
     public float itemWidth = 32f;
@@ -38,6 +37,10 @@ public class CrateManager : MonoBehaviour
 
     public void StartSpinning()
     {
+        GameManagerObj = GameObject.Find("GameManager");
+        GameObject moneyTMP = GameObject.FindGameObjectWithTag("Money");
+        moneyTMPText = moneyTMP.GetComponent<TMP_Text>();
+
         foreach (Transform child in content)
         {
             Destroy(child.gameObject);
@@ -77,7 +80,8 @@ public class CrateManager : MonoBehaviour
 
     public void CrateReward()
     {
-        moneyTMP.text = (GameManager.money += winningItem.skinReward).ToString();
+        GameManager GameManager = GameManagerObj.GetComponent<GameManager>();
+        moneyTMPText.SetText((GameManager.money += winningItem.skinReward).ToString());
     }
 
     private void Start()

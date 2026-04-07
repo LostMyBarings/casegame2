@@ -119,71 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &33974107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 33974109}
-  - component: {fileID: 33974108}
-  m_Layer: 0
-  m_Name: CrateManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &33974108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33974107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f1392b9b549ad44ba776c771e2a1ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  GameManager: {fileID: 2096394012}
-  moneyTMP: {fileID: 1249868408}
-  itemPrefab: {fileID: 2210799749112281024, guid: 5d7632277be211c49a245eb25b0865f4, type: 3}
-  crate: {fileID: 780923505}
-  content: {fileID: 0}
-  itemsToSpawn: 50
-  itemWidth: 32
-  smoothness: 1.5
-  possibleSkins:
-  - skinName: Glock19 (Common)
-    skinSprite: {fileID: 21300000, guid: 7bca824edf642e742a16b210f378ab60, type: 3}
-    skinReward: 10
-    rarityColor: {r: 1, g: 1, b: 1, a: 1}
-  - skinName: Glock19 (Rare)
-    skinSprite: {fileID: 3289545095745477540, guid: f768ec09366c3b84bb6980afa4a1faca, type: 3}
-    skinReward: 25
-    rarityColor: {r: 0, g: 1, b: 0.15844011, a: 1}
-  - skinName: Glock19 (Epic)
-    skinSprite: {fileID: 4641169264192520394, guid: cff2b2577f4b3584e9cedd01462732ae, type: 3}
-    skinReward: 50
-    rarityColor: {r: 1, g: 0.03243528, b: 0, a: 1}
---- !u!4 &33974109
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 33974107}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.44955, y: 1.13258, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,9 +492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2133cac93b276a54c91e59a01e811144, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  CrateManager: {fileID: 33974108}
+  CrateManager: {fileID: 0}
   CaseOpening: {fileID: 4423733584442042718, guid: 0db996c846d61a74d858ec24193ce862, type: 3}
-  Canvas: {fileID: 1485585573}
+  Openings: {fileID: 2092558912}
   newOpening: {fileID: 4423733584442042718, guid: 0db996c846d61a74d858ec24193ce862, type: 3}
   newOpeningContent: {fileID: 0}
 --- !u!61 &780923506
@@ -1006,6 +941,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1249868407}
+  - {fileID: 2092558913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1013,6 +949,68 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &2092558912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092558913}
+  - component: {fileID: 2092558914}
+  m_Layer: 5
+  m_Name: Openings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2092558913
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092558912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1485585574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2092558914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092558912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: -56
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &2096394010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,5 +1065,4 @@ SceneRoots:
   - {fileID: 2096394011}
   - {fileID: 780923508}
   - {fileID: 558686485}
-  - {fileID: 33974109}
   - {fileID: 1485585574}

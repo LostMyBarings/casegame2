@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    [SerializeField] CrateManager CrateManager;
-    [SerializeField] GameObject CaseOpening;
-    [SerializeField] Canvas Canvas;
+    public CrateManager CrateManager;
+    public GameObject CaseOpening;
+    public GameObject Openings;
     public GameObject newOpening;
     public RectTransform newOpeningContent;
 
-    private int openingsStarted;
+    private int openingsStarted = 0;
 
     private float timeLeft = 5;
     private bool clicked = false;
@@ -32,8 +32,8 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
 
-            timeLeft -= Time.deltaTime;
-            if (timeLeft <= 0)
+            
+            if (timeLeft <= 5)
             {
                 GetComponent<SpriteRenderer>().enabled = true;
                 GetComponent<BoxCollider2D>().enabled = true;
@@ -72,15 +72,17 @@ public class Crate : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, I
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (openingsStarted == 1) { Destroy(newOpening); openingsStarted = 0; }
+        if (openingsStarted == 2) { Destroy(newOpening); openingsStarted = 0; }
         if (!clicked)
         {
             clicked = true;
-            newOpening = Instantiate(CaseOpening, spawnPosition, spawnRotation, Canvas.transform);
+            newOpening = Instantiate(CaseOpening, spawnPosition, spawnRotation, Openings.transform);
             newOpeningContent = newOpening.transform.Find("ScrollerWindow/ScrollerContent") as RectTransform;
+            CrateManager = newOpening.GetComponent<CrateManager>();
             CrateManager.content = newOpeningContent;
+            
             CrateManager.StartSpinning();
-            openingsStarted = 1;
+            openingsStarted += 1;
 
             GetComponent<SpriteRenderer>().enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
